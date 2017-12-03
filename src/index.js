@@ -1,1 +1,1 @@
-export FBGraphAPI from './FBGraphAPI';
+export default from './FBGraphAPI';

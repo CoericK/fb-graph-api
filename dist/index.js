@@ -3,12 +3,12 @@
 Object.defineProperty(exports, "__esModule", {
   value: true
 });
-exports.FBGraphAPI = undefined;
+exports.default = undefined;
 
-var _FBGraphAPI2 = require('./FBGraphAPI');
+var _FBGraphAPI = require('./FBGraphAPI');
 
-var _FBGraphAPI3 = _interopRequireDefault(_FBGraphAPI2);
+var _FBGraphAPI2 = _interopRequireDefault(_FBGraphAPI);
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
-exports.FBGraphAPI = _FBGraphAPI3.default;
+exports.default = _FBGraphAPI2.default;
