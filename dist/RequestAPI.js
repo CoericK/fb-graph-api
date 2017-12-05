@@ -26,14 +26,17 @@ var debugAccessToken = exports.debugAccessToken = function debugAccessToken(appA
                 json: true
             }, function (e, res, body) {
                 if (e) {
-                    reject({ message: 'Somethjng wrong' });
                     console.log('e', e);
+                    reject({ message: 'Somethjng wrong' });
                 } else {
-                    console.log('res.statusCode debugAccessToken', res.statusCode);
-                    if (res.statusCode !== 200) {
-                        reject({ message: 'something wrong statusCode' });
-                    } else {
+                    if (res.statusCode === 200) {
                         resolve(body.data);
+                    } else if (res.statusCode === 400) {
+                        reject({
+                            message: body.error && body.error.message ? body.error.message : 'Something wrong with FB API'
+                        });
+                    } else {
+                        reject({ message: 'something wrong statusCode' });
                     }
                 }
             });

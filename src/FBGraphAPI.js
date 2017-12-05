@@ -33,6 +33,14 @@ class FBGraphAPI {
                 .then(() => resolve(this.debugToken(inputToken)))
                 .catch(reject))
     }
+
+    isValid(inputToken) {
+        return new Promise((resolve, reject) => {
+            this.debugToken(inputToken)
+                .then(data => resolve(data.is_valid))
+                .catch(reject)
+        });
+    }
 }
 
 

@@ -45,6 +45,17 @@ var FBGraphAPI = function () {
                 }).catch(reject);
             });
         }
+    }, {
+        key: "isValid",
+        value: function isValid(inputToken) {
+            var _this2 = this;
+
+            return new Promise(function (resolve, reject) {
+                _this2.debugToken(inputToken).then(function (data) {
+                    return resolve(data.is_valid);
+                }).catch(reject);
+            });
+        }
     }]);
 
     return FBGraphAPI;

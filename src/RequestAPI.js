@@ -14,23 +14,27 @@ export const debugAccessToken = (appAccessToken, inputToken) => {
         } else {
 
 
-            request.get({
-                url: `${BASE_URL}/debug_token?access_token=${appAccessToken}&input_token=${inputToken}`,
-                json: true
-            }, (e, res, body) => {
-                if (e) {
-                    reject({message: 'Somethjng wrong'})
-                    console.log('e', e);
-                } else {
-                    console.log('res.statusCode debugAccessToken', res.statusCode);
-                    if (res.statusCode !== 200) {
-                        reject({message: 'something wrong statusCode'});
+            request
+                .get({
+                    url: `${BASE_URL}/debug_token?access_token=${appAccessToken}&input_token=${inputToken}`,
+                    json: true
+                }, (e, res, body) => {
+                    if (e) {
+                        console.log('e', e);
+                        reject({message: 'Somethjng wrong'});
                     } else {
-                        resolve(body.data);
-                    }
+                        if (res.statusCode === 200) {
+                            resolve(body.data);
+                        } else if (res.statusCode === 400) {
+                            reject({
+                                message: body.error && body.error.message ? body.error.message : `Something wrong with FB API`,
+                            });
+                        } else {
+                            reject({message: 'something wrong statusCode'});
+                        }
 
-                }
-            });
+                    }
+                });
 
         }
     });
