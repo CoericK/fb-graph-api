@@ -20,10 +20,10 @@ yarn add fb-graph-api
 
 ```js
 // Using require() in ES5
-var FBGraphAPI = require('fb-graph-api').FBGraphAPI;
+var FBGraphAPI = require('fb-graph-api');
 
 // Using ES2015 import through Babel
-import {FBGraphAPI} from 'fb-graph-api';
+import FBGraphAPI from 'fb-graph-api';
 ```
 
 ## Library usage
@@ -85,6 +85,19 @@ FB.debugToken('EAAJ3bm5M....')
             "user_id": 1207059
         }
         */
+    })
+    .catch(e => console.log('e', e));
+```
+
+### isValid
+
+[Debugs a given token](https://developers.facebook.com/docs/facebook-login/access-tokens/debugging-and-error-handling) using the App Access Token and checks if the given token was crated for the App Access Token that was given.
+
+
+```js
+FB.isValid('EAAJ3bm5M....')
+    .then(valid => {
+        console.log('valid', valid); // true or false
     })
     .catch(e => console.log('e', e));
 ```
