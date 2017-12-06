@@ -1,6 +1,6 @@
 {
   "name": "fb-graph-api",
-  "version": "1.0.9",
+  "version": "1.0.13",
   "description": "NodeJS Library for Facebook Graph API",
   "homepage": "https://github.com/CoericK/fb-graph-api",
   "keywords": [

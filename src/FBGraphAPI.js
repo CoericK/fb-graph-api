@@ -1,5 +1,6 @@
 import {
-    debugAccessToken
+    debugAccessToken,
+    meWithAccessToken
 } from "./RequestAPI";
 
 import {
@@ -40,6 +41,10 @@ class FBGraphAPI {
                 .then(data => resolve(data.is_valid))
                 .catch(reject)
         });
+    }
+
+    me(token, fields) {
+        return meWithAccessToken(token, fields);
     }
 }
 

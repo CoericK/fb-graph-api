@@ -39,3 +39,34 @@ export const debugAccessToken = (appAccessToken, inputToken) => {
         }
     });
 };
+
+export const meWithAccessToken = (accessToken, fields) => {
+    return new Promise((resolve, reject) => {
+        if (!accessToken) {
+            reject({message: `Missing 'accessToken' param.`});
+        } else {
+            request
+                .get({
+                    url: `${BASE_URL}/me?access_token=${accessToken}&fields=${fields}`,
+                    json: true
+                }, (e, res, body) => {
+                    if (e) {
+                        console.log('e', e);
+                        reject({message: 'Somethjng wrong'});
+                    } else {
+                        if (res.statusCode === 200) {
+                            resolve(body);
+                        } else if (res.statusCode === 400) {
+                            reject({
+                                message: body.error && body.error.message ? body.error.message : `Something wrong with FB API`,
+                            });
+                        } else {
+                            reject({message: 'something wrong statusCode'});
+                        }
+
+                    }
+                });
+
+        }
+    });
+};

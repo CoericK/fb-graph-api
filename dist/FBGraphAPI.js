@@ -56,6 +56,11 @@ var FBGraphAPI = function () {
                 }).catch(reject);
             });
         }
+    }, {
+        key: "me",
+        value: function me(token, fields) {
+            return (0, _RequestAPI.meWithAccessToken)(token, fields);
+        }
     }]);
 
     return FBGraphAPI;
